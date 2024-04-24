@@ -17,11 +17,11 @@ def check_internet_connection():
 
 def download_files():
     if not check_internet_connection():
-        messagebox.showerror("Помилка!", "Будь ласка підключіть інтернет, для того, щоб завантажити локалізацію.")
+        messagebox.showerror("Помилка!", "Будь ласка, підключіть інтернет, щоб завантажити локалізацію.\nЯкщо у вас є інтернет, але не вдається. Внесіть цей .exe файл до білого списку антивіруса.")
         return
 
     if platform.system() not in ['Windows', 'Windows']:
-        messagebox.showerror("Помилка!", "На жаль програма підтримує встановлення для користувачів з Windows 10 або Windows 11.")
+        messagebox.showerror("Помилка!", "На жаль, програма підтримує встановлення тільки на Windows 10 або Windows 11.")
         return
 
     repo_url = 'https://api.github.com/repos/YT-Narin/Ukraine-language-for-SCP-SL/releases/latest'
@@ -34,7 +34,7 @@ def download_files():
         download_path = filedialog.askdirectory(initialdir=os.path.join(os.path.expanduser("~"), "Documents"), title="Виберіть папку Translations у папці гри.")
 
         if download_path:
-            cash_path = os.path.join(download_path, "UKDownloader_cash")
+            cash_path = os.path.join(os.path.expanduser("~"), "Documents", "UKDownloader_cash")
             os.makedirs(cash_path, exist_ok=True)
 
             progress_bar["value"] = 0
@@ -43,9 +43,9 @@ def download_files():
             download_thread = threading.Thread(target=start_downloads, args=(assets, cash_path, download_path))
             download_thread.start()
         else:
-            messagebox.showwarning("Увага!", "Виберіть шлях для завантаження:")
+            messagebox.showwarning("Увага!", "Виберіть папку Translations у папці гри.")
     else:
-        messagebox.showerror("Помилка!", "Помилка отримання інформації")
+        messagebox.showerror("Помилка!", "Помилка при отриманні інформації")
 
 def start_downloads(assets, cash_path, download_path):
     zip_assets = [asset for asset in assets if asset['name'].endswith('.zip') and not asset['name'].endswith('Source.zip')]
@@ -64,7 +64,7 @@ def start_downloads(assets, cash_path, download_path):
     # Remove all files except ZIP archives from UKDownloader_cash
     remove_non_zip_files(cash_path)
 
-    messagebox.showinfo("Успішно!", "Локалізацією успішно завантажено!\nМожете закривати програму.")
+    messagebox.showinfo("Успішно!", "Локалізацією успішно завантажено!\nМожете закрити програму.")
     progress_window.withdraw()
 
 def download_file(url, path):
@@ -96,6 +96,14 @@ def remove_non_zip_files(folder_path):
         if not file.endswith('.zip'):
             os.remove(file_path)
 
+def open_tutorial():
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    tutorial_path = os.path.join(current_dir, "README.txt")
+    try:
+        os.startfile(tutorial_path)
+    except OSError:
+        messagebox.showerror("Помилка!", "Не вдалося відкрити файл README.txt")
+
 # GUI setup
 root = tk.Tk()
 root.title("UK Downloader")
@@ -113,6 +121,9 @@ root.geometry(f"{window_width}x{window_height}+{x_position}+{y_position}")
 if platform.system() == "Windows":
     root.iconbitmap(default='ico.ico')
 
+# Set minimum window size
+root.minsize(window_width, window_height)
+
 info_label = tk.Label(root, text="Українська локалізація для SCP:SL", font=("Arial", 20))
 info_label.pack(pady=0)
 
@@ -124,6 +135,9 @@ version_label.pack(side="bottom", padx=10, pady=10)
 
 download_button = tk.Button(root, text="Завантажити", command=download_files)
 download_button.pack(pady=5)
+
+tutorial_button = tk.Button(root, text="Tutorial", command=open_tutorial)
+tutorial_button.pack(pady=3)
 
 # Progress bar window
 progress_window = tk.Toplevel(root)
