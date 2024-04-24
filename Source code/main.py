@@ -97,12 +97,8 @@ def remove_non_zip_files(folder_path):
             os.remove(file_path)
 
 def open_tutorial():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    tutorial_path = os.path.join(current_dir, "README.txt")
-    try:
-        os.startfile(tutorial_path)
-    except OSError:
-        messagebox.showerror("Помилка!", "Не вдалося відкрити файл README.txt")
+    tutorial_text = "Щоб встановити локалізацію, вам потрібно пройтися за цими пунктами:\n1. Відкрити Steam -> Бібліотека -> Керування -> Подивитися локальні файли\n2. Відкрити папку Translation\n3. Копіювати зверху шлях до папки\n4. У програмі натиснути «Завантажити»\n5. Вставити в рядок вище шлях до папки Translation і натиснути «Вибрати папку».\n6. Очікувати скачування.\n\nГотово! Ви можете в налаштуваннях гри поставити українську мову.\nПрограму ви можете собі залишити, щоб у наступні рази оновлювати локалізацію.\n\nТакож у папці Документи/UKDownloader_cash зберігається кеш інсталяції, можете після встановлення локалізації очищати цю папку."
+    messagebox.showinfo("Tutorial", tutorial_text)
 
 # GUI setup
 root = tk.Tk()
@@ -130,7 +126,7 @@ info_label.pack(pady=0)
 info_label2 = tk.Label(root, text="Локалізація створена Narin'ом і Fencer'ом.", font=("Arial", 10))
 info_label2.pack(pady=0)
 
-version_label = tk.Label(root, text="Версія: 1.0.0\nПрограма тільки підтримує ОС: Windows 10 та Windows 11.\nПрограму створено Narin'ом.", font=("Arial", 8), anchor="se", wraplength=480)
+version_label = tk.Label(root, text="Версія: 1.0.1\nПрограма тільки підтримує ОС: Windows 10 та Windows 11.\nПрограму створено Narin'ом.", font=("Arial", 8), anchor="se", wraplength=480)
 version_label.pack(side="bottom", padx=10, pady=10)
 
 download_button = tk.Button(root, text="Завантажити", command=download_files)
