@@ -7,5 +7,5 @@ It is allowed to use the program according to MIT license.
 ## UA
 Програма для встановлення останньої версії [української локалізації для SCP: SL](https://github.com/YT-Narin/Ukraine-language-for-SCP-SL).                                                          
 Програму створено Narin'ом.                                                          
-Дозволено використовувати програму згідно з MIT ліцензією.
+Дозволено використовувати програму згідно з MIT ліцензією.                                                          
 [Інформація з Virus Total.](https://www.virustotal.com/gui/file/24b2d340c417f910d9ac910d20b9d58d8600945d62ec41d4ace4899667ab7704?nocache=1)
