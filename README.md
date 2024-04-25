@@ -1,4 +1,4 @@
-# UK Installer
+# UK Downloader
 ## ENG
 Program to install the latest version of [Ukrainian localization for SCP: SL](https://github.com/YT-Narin/Ukraine-language-for-SCP-SL).                                                          
 The program was created by Narin's.                                                          
