@@ -1,6 +1,7 @@
 # UK Downloader
 ![downloads](https://img.shields.io/github/downloads/YT-Narin/UKDownloader/total?logo=github&style=for-the-badge)
 ![version](https://img.shields.io/github/v/release/YT-Narin/UKDownloader?include_prereleases&logo=github&style=for-the-badge)
+[![discord](https://img.shields.io/discord/1052888868514447401?label=Discord&logo=discord&style=for-the-badge)](https://discord.gg/xBYJmpHptk)
 ## ENG
 Program to install the latest version of [Ukrainian localization for SCP: SL](https://github.com/YT-Narin/Ukraine-language-for-SCP-SL).                                                          
 The program was created by Narin's.                                                          
